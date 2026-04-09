@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const { pathname } = useLocation();
+
+    // Automatically scroll to top when changing routes (pages)
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
 
     // Show button when page is scrolled down
     useEffect(() => {
